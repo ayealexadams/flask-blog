@@ -112,6 +112,16 @@ def create_post():
 	return render_template("create_update_post.html", title="Create Post", form=form, legend=legend)
 
 
+@app.route("/user/<string:username>/posts")
+def user_posts(username):
+	user = User.query.filter_by(username=username).first_or_404()
+
+	page_num = request.args.get("page", 1, type=int)
+	posts = Post.query.filter_by(author=user).order_by(Post.date_posted.desc()).paginate(per_page=5, page=page_num)
+
+	return render_template("user_posts.html", user=user, posts=posts)
+
+
 @app.route("/account", methods=["GET", "POST"])
 @login_required
 def account():
