@@ -48,11 +48,12 @@
 
 			<div class="form-group">
 				{{ form.submit(class="btn btn-outline-info") }}
-			</div>
+			
+				<small class="text-muted">
+					<a href="{{ url_for('reset_password_request') }}">Forgot password?</a>
+				</small>
 
-			<small class="text-muted">
-				<a href="#">Forgot password?</a>
-			</small>
+			</div>
 
 		</form>
 	</div>
